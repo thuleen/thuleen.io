@@ -1,0 +1,301 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Merkle Tree | thuleen</title>
+  <link href="./favicon.ico" rel="icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:wght@300;400;500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    body {
+      font-family: "IBM Plex Serif", serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 13pt;
+      font-weight: 300;
+      margin: 0;
+    }
+
+    .w3-container {
+      margin: 12px;
+      padding: 0 2.4rem;
+      width: 100%;
+      max-width: 1200px;
+      box-sizing: border-box;
+    }
+
+    .heading {
+      font-size: 2rem;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .tree {
+      text-align: center;
+      margin-top: 2rem;
+      font-family: "Fira Code", monospace;
+    }
+
+    /* Force leaf nodes into one horizontal row */
+    .leaf-level {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 1.5rem;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+
+    .level {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 1.8rem 0;
+    }
+
+    .node {
+      background: #f9f9f9;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      width: 180px;
+      text-align: center;
+      font-size: 0.8rem;
+      word-break: break-word;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      flex-shrink: 0;
+    }
+
+    .label {
+      display: block;
+      font-family: "IBM Plex Serif", serif;
+      font-size: 0.8rem;
+      color: #333;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .arrow {
+      font-size: 1rem;
+      color: #888;
+    }
+
+    code {
+      display: block;
+      background: #f4f4f4;
+      padding: 0.8rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+      word-wrap: break-word;
+    }
+
+    @media (max-width: 600px) {
+      .leaf-level {
+        justify-content: flex-start;
+      }
+
+      .node {
+        width: 160px;
+      }
+    }
+
+    .leaf-data {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      text-align: left;
+      background: #fcfcfc;
+      border-radius: 5px;
+      padding: 0.5rem;
+      border: 1px dashed #ccc;
+    }
+
+    /* Distinct leaf background colors */
+    .leaf-0 {
+      background: #eaf6ff;
+      border-color: #b3dcff;
+    }
+
+    .leaf-1 {
+      background: #eafaea;
+      border-color: #b6e3b6;
+    }
+
+    .leaf-2 {
+      background: #fff6e8;
+      border-color: #ffddac;
+    }
+
+    .leaf-3 {
+      background: #fceaf4;
+      border-color: #f4b9d6;
+    }
+
+    .leaf-hash {
+      margin-top: 0.6rem;
+    }
+
+    .root-node {
+      background: #e9fbe9;
+      border: 1px solid #bbb;
+    }
+
+    .arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin: 0.8rem 0;
+      color: #444;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .arrow-icon {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      opacity: 0.8;
+    }
+
+    .sub-header {
+      text-align: left;
+      margin-top: 0.6rem;
+      padding-left: 0.5rem;
+      /* fine-tune here for pixel-perfect alignment */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top Header -->
+  <div class="w3-container w3-margin-top"
+    style="background-color: #FFFFFF; display: flex; align-items: center; gap: 10px;">
+    <a href="./index.html">
+      <img class="w3-margin-top" src="./logo.gif" alt="thuleen-logo"
+        style="width: 75px; height: 75px; background-color: #FFFFFF;" />
+    </a>
+    <img src="./thuleen-text.png" alt="thuleen-text" style="height: 23.9px; width: auto; padding-top: 10px;" />
+  </div>
+
+
+
+  <!-- Main Content -->
+  <div class="w3-container">
+
+    <!-- Sub Header (aligned with logo) -->
+    <div class="sub-header">
+      <h2 class="heading">Merkle Tree (hash tree)</h2>
+    </div>
+    <p>
+      This <strong>Merkle Tree</strong> example demonstrates how individual data records — such as name, address,
+      seafarer ID, and place of issue — are hashed and combined into a single <em>Merkle Root</em> for verification.
+    </p>
+
+    <div class="tree" id="merkleTree"></div>
+    <code id="rootOutput">Merkle Root will appear here.</code>
+  </div>
+  </div>
+
+  <footer style="text-align: center; padding: 1rem 0; font-size: 0.85rem; color: #777;">
+    ©
+    <script>document.write(new Date().getFullYear())</script> Thuleen.
+  </footer>
+
+  <script>
+    async function sha256(message) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(message);
+      const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function buildMerkleTree() {
+      const records = [
+        { name: "Anas bin Malik" },
+        { address: "3 Jln Ampang" },
+        { seafarerId: "202098123332124" },
+        { placeOfIssue: "Port Klang, Malaysia" }
+      ];
+
+      const leafStrings = records.map(r => {
+        const [key, value] = Object.entries(r)[0];
+        return `${key}:${value}`;
+      });
+
+      const leafHashes = await Promise.all(leafStrings.map(sha256));
+
+      const level1 = [
+        await sha256(leafHashes[0] + leafHashes[1]),
+        await sha256(leafHashes[2] + leafHashes[3])
+      ];
+
+      const root = await sha256(level1[0] + level1[1]);
+
+      const treeContainer = document.getElementById("merkleTree");
+      treeContainer.innerHTML = `
+        <div class="level leaf-level">
+          ${records.map((rec, i) => {
+        const [key, value] = Object.entries(rec)[0];
+        return `
+              <div class="node leaf-${i}">
+                <div class="leaf-data">
+                  <strong>${key}:</strong> ${value}
+                </div>
+                <div class="leaf-hash">
+                  <span class="label">Leaf Hash ${i + 1}</span>
+                  ${leafHashes[i].slice(0, 16)}...
+                </div>
+              </div>`;
+      }).join('')}
+        </div>
+
+<div class="arrow">
+  <img src="./assets/move-up.png" alt="move up" class="arrow-icon" />
+  <span>Combine pairs of hashes</span>
+  <img src="./assets/move-up.png" alt="move up" class="arrow-icon" />
+</div>
+
+
+        <div class="level">
+          ${level1.map((h, i) => `
+            <div class="node">
+              <span class="label">Level 1 Hash ${i + 1}</span>
+              ${h.slice(0, 16)}...
+            </div>`).join('')}
+        </div>
+
+<div class="arrow">
+  <img src="./assets/move-up.png" alt="move up" class="arrow-icon" />
+  <span>Combine to form Merkle Root</span>
+  <img src="./assets/move-up.png" alt="move up" class="arrow-icon" />
+</div>
+
+
+        <div class="level">
+          <div class="node root-node">
+            <span class="label">Merkle Root</span>
+            ${root.slice(0, 20)}...
+          </div>
+        </div>
+      `;
+
+      document.getElementById("rootOutput").textContent = `Merkle Root: ${root}`;
+    }
+
+    buildMerkleTree();
+  </script>
+</body>
+
+</html>
