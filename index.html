@@ -1,155 +1,136 @@
 <!doctype html>
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>thuleen</title>
     <link href="./favicon.ico" rel="icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Fira+Code:wght@300..700&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Open+Sans:ital@0;1&family=Scheherazade+New:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-    <style>
-        body {
-            font-family: "FireCode", monospace;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 13pt;
-            font-weight: 300;
-            margin: 0;
-        }
 
-        .w3-container {
-            margin: 12px;
-            padding: 0 2.4rem;
-            width: 100%;
-            max-width: 1200px;
-            /* 45rem */
-            font-size: 100%;
-            box-sizing: border-box;
-        }
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
-        .w3-margin-top {
-            margin-top: 17px;
-        }
+  <body class="bg-gray-50 text-gray-800 font-mono">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="flex items-center gap-3 mt-6">
+        <img src="./logo-only.png" alt="thuleen-logo" class="w-14 sm:w-16" />
+        <img src="./thuleen-text.png" alt="thuleen-text" class="h-5 sm:h-6" />
+      </div>
 
-        .heading {
-            font-size: 2.5rem;
-            font-weight: 400;
-            line-height: 1.2;
-        }
+      <!-- Content -->
+      <div class="mt-8 space-y-4 text-sm sm:text-base leading-relaxed">
+        <p class="text-base sm:text-lg leading-relaxed">
+          <img
+            src="./thuleen-text.png"
+            alt="thuleen"
+            class="inline-block h-[0.9em] align-baseline"
+          />
+          helps you create tamper-proof documents for a world that demands
+          trust.
+        </p>
 
-        img {
-            max-width: 100%;
-            height: auto;
-        }
+        <img src="./lesa-blue-text.png" alth="lesa logo" class="h-[1.7em]" />
+        <p>
+          LESA is our in-house framework for developing reliable digital assets
+          like document authentication solutions.
+        </p>
 
-        ul {
-            padding-left: 1.2em;
-        }
+        <p>
+          It is built on proven hashing and encryption techniques, and leverages
+          the
+          <strong>Ethereum</strong> platform for secure and transparent
+          operations.
+        </p>
 
-        @media (max-width: 600px) {
-            body {
-                font-size: 15pt;
-            }
+        <p>
+          Ultimately, LESA enables us to deliver cost-effective,
+          blockchain-based solutions tailored to your needs.
+        </p>
 
-            .heading {
-                font-size: 1.8rem;
-            }
+        <h3 class="text-lg sm:text-xl font-semibold mt-6">Past projects</h3>
 
-            .w3-container {
-                padding: 0 1rem;
-            }
-        }
-    </style>
-
-</head>
-
-<body>
-    <div class="w3-container">
-        <div class="w3-container w3-margin-top"
-            style="background-color: #FFFFFF; background: #FFFFFF; display: flex; align-items: center; gap: 10px;">
-            <img class="w3-margin-top" src="./logo.gif" alt="thuleen-logo"
-                style="width: 75px; height: 75px; background-color: #FFFFFF;" />
-            <img src="./thuleen-text.png" alt="thuleen-text" style="height: 23.9px; width: auto; padding-top: 10px;" />
-        </div>
-
-        <div class="w3-container w3-margin-top">
-            <h1 class="heading">
-                <img src="./thuleen-text.png" alt="thuleen-text"
-                    style="height: 2.025rem; width: auto; vertical-align: middle; margin-bottom: 0.65rem;" /> helps you
-                to create tamper-proof and verifiable documents for a world and beyond that demands trust.
-            </h1>
-            <h3>
-                LESA
-            </h3>
-            <p class="w3-margin-left">
-                LESA is our in-house framework for developing reliable digital assets like document authentication
-                solutions.
-            </p>
-            <p>
-                It is built on proven hashing and encryption techniques, and leverages the <strong>Ethereum</strong>
-                platform for secure
-                and transparent operations.
-            </p>
-            <p class="w3-margin-left">
-                Ultimately, LESA enables us to deliver cost-effective, blockchain-based solutions tailored to your
-                needs.
-            </p>
-            <h3>Past projects</h3>
-            <ul>
-                <li>Malaysian seafarer digital ID - Uses LESA;</li>
-                <li>
-                    <a target="_blank" href="https://www.malaysia.gov.my/portal/content/31242?language=my">NTIS project
-                        for the Malaysian ships digital
-                        registry system - Uses LESA</a>;
-                </li>
-                <li>
-                    Private ethereum network for goverment agencies, and;
-                </li>
-                <li>
-                    Hands-on training in setting up private ethereum network
-                    and smart contracts development for state agencies.
-                </li>
-                <li>SNAD - AI guardrails aka "Trusted AI". Set of API endpoints to make your AI models trustworthy.</a>
-                </li>
-            </ul>
-            <h3>Awards &amp; certificates</h3>
-            <ul>
-                <li>
-                    <a href="https://sandbox.gov.my/" target="_blank">National Technology and Innovation Sandbox
-                        (NTIS)</a> award.
-                </li>
-                <li>
-                    <a href="https://www.mysti.gov.my/product/lesa-lesen-asli-sijil-asli-6" target="_blank">MySTI</a>
-                    from the Ministry of Science,
-                    Technology and
-                    Innovation.
-                </li>
-                <li>Ministry of Finance registered vendor.</li>
-            </ul>
-            <h3>Resources</h3>
-            <ul>
-                <li><a href="hash.html">Hash functions</a></li>
-                <li><a href="merkle.html">Merkle tree</a></li>
-            </ul>
-            <h3>Get in touch</h3>
-            Reach out via email if you'd like to know more about what we do.
-            <br />
-            <br />
-            <code>zairosezary.thuleen@gmail.com</code>
-            <br />
-            <code>cryptocert.thuleen@gmail.com</code>
-            <br />
-            <a target="_blank" href="https://www.boycotzionism.com/">
-                <img src="./free-palestine.png" style="width: 135px; margin-bottom: 7px"
-                    alt="thuleen supports free palestine and condenmed isr*el zion*S" />
+        <ul class="list-disc pl-5 space-y-2">
+          <li>Malaysian seafarer digital ID - Uses LESA</li>
+          <li>
+            <a
+              href="https://www.malaysia.gov.my/portal/content/31242?language=my"
+              target="_blank"
+              class="text-blue-600 hover:underline"
+            >
+              NTIS project for the Malaysian ships digital registry system
             </a>
-        </div>
-    </div>
-</body>
+            - Uses LESA
+          </li>
+          <li>Private Ethereum network for government agencies</li>
+          <li>
+            Hands-on training in private Ethereum networks and smart contract
+            development
+          </li>
+          <li>SNAD - AI guardrails ("Trusted AI")</li>
+        </ul>
 
+        <h3 class="text-lg sm:text-xl font-semibold mt-6">
+          Awards & Certificates
+        </h3>
+
+        <ul class="list-disc pl-5 space-y-2">
+          <li>
+            <a
+              href="https://sandbox.gov.my/"
+              target="_blank"
+              class="text-blue-600 hover:underline"
+            >
+              National Technology and Innovation Sandbox (NTIS)
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.mysti.gov.my/product/lesa-lesen-asli-sijil-asli-6"
+              target="_blank"
+              class="text-blue-600 hover:underline"
+            >
+              MySTI Certification
+            </a>
+          </li>
+          <li>Ministry of Finance registered vendor</li>
+        </ul>
+
+        <h3 class="text-lg sm:text-xl font-semibold mt-6">Resources</h3>
+
+        <ul class="list-disc pl-5 space-y-2">
+          <li>
+            <a href="hash.html" class="text-blue-600 hover:underline"
+              >Hash functions</a
+            >
+          </li>
+          <li>
+            <a href="merkle.html" class="text-blue-600 hover:underline"
+              >Merkle tree</a
+            >
+          </li>
+        </ul>
+
+        <h3 class="text-lg sm:text-xl font-semibold mt-6">Get in touch</h3>
+
+        <p>Reach out via email if you'd like to know more about what we do.</p>
+
+        <div class="bg-gray-100 p-3 rounded-lg text-sm space-y-1">
+          <div>zairosezary.thuleen@gmail.com</div>
+          <div>cryptocert.thuleen@gmail.com</div>
+        </div>
+
+        <div class="mt-6">
+          <a target="_blank" href="https://www.boycotzionism.com/">
+            <img
+              src="./free-palestine.png"
+              alt="support message"
+              class="w-28 sm:w-32"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
+
